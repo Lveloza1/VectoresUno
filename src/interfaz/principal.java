@@ -17,6 +17,7 @@ public class principal extends javax.swing.JFrame {
     
     public principal() {
         initComponents();
+        txtLongitud.requestFocusInWindow();
     }
 
     /**
@@ -42,8 +43,8 @@ public class principal extends javax.swing.JFrame {
         cmdSumatoria = new javax.swing.JButton();
         cmdLlenadoAutomatico = new javax.swing.JButton();
         cmdCrear = new javax.swing.JButton();
-        cmdMenorElemento2 = new javax.swing.JButton();
-        cmdMayorElemento2 = new javax.swing.JButton();
+        cmdMenorElemento = new javax.swing.JButton();
+        cmdMayorElemento = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         cmdMostrar = new javax.swing.JButton();
         cmdBorrar = new javax.swing.JButton();
@@ -71,7 +72,7 @@ public class principal extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("Ejercicio 1");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado "));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -97,9 +98,19 @@ public class principal extends javax.swing.JFrame {
         jPanel4.add(cmdLlenadoManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 140, 32));
 
         cmdProductoria.setText("Productoria");
+        cmdProductoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdProductoriaActionPerformed(evt);
+            }
+        });
         jPanel4.add(cmdProductoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 140, 32));
 
         cmdSumatoria.setText("Sumatoria");
+        cmdSumatoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdSumatoriaActionPerformed(evt);
+            }
+        });
         jPanel4.add(cmdSumatoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 140, 32));
 
         cmdLlenadoAutomatico.setText("Llenado Automático");
@@ -118,11 +129,21 @@ public class principal extends javax.swing.JFrame {
         });
         jPanel4.add(cmdCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 140, 32));
 
-        cmdMenorElemento2.setText("Menor Elemento");
-        jPanel4.add(cmdMenorElemento2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 140, 32));
+        cmdMenorElemento.setText("Menor Elemento");
+        cmdMenorElemento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdMenorElementoActionPerformed(evt);
+            }
+        });
+        jPanel4.add(cmdMenorElemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 140, 32));
 
-        cmdMayorElemento2.setText("Mayor Elemento");
-        jPanel4.add(cmdMayorElemento2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 140, 32));
+        cmdMayorElemento.setText("Mayor Elemento");
+        cmdMayorElemento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdMayorElementoActionPerformed(evt);
+            }
+        });
+        jPanel4.add(cmdMayorElemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 140, 32));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 160, 300));
 
@@ -158,14 +179,16 @@ public class principal extends javax.swing.JFrame {
     int longitud;
         if(txtLongitud.getText().trim().isEmpty()){
       JOptionPane.showMessageDialog(this,"Digite la longitud del vector","Error",JOptionPane.ERROR_MESSAGE);
-  }   
+       txtLongitud.requestFocusInWindow();
+       
+        }   
       else if(Integer.parseInt(txtLongitud.getText().trim())==0){
       JOptionPane.showMessageDialog(this,"La longitud no puede ser 0","Error",JOptionPane.ERROR_MESSAGE); 
       txtLongitud.requestFocusInWindow();
       txtLongitud.selectAll();
    }
       else{
-          longitud=Integer.parseInt(txtLongitud.getText());
+          longitud=Integer.parseInt(txtLongitud.getText().trim());
           v=new double[longitud];
           JOptionPane.showMessageDialog(this,"El vector ha sido creado exitoxamente");
  
@@ -186,19 +209,29 @@ public class principal extends javax.swing.JFrame {
 
     private void cmdLlenadoManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenadoManualActionPerformed
 double n;
-  
+  if(txtLongitud.getText().trim().isEmpty()){
+      JOptionPane.showMessageDialog(this,"Digite la longitud del vector","Error",JOptionPane.ERROR_MESSAGE); 
+      txtLongitud.requestFocusInWindow();
+      
+   }
+     else{ 
   for (int i=0; i<v.length; i++){
   n=Double.parseDouble(JOptionPane.showInputDialog(this,"Ingrese el elemento número "+(i+1)));
   v[i]=n;
-   
-    } 
-
+   } 
+ }
     }//GEN-LAST:event_cmdLlenadoManualActionPerformed
 
     private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
-for (int i=0 ; i<v.length ; i++){
+if(txtLongitud.getText().trim().isEmpty()){
+      JOptionPane.showMessageDialog(this,"Digite la longitud del vector","Error",JOptionPane.ERROR_MESSAGE);
+       txtLongitud.requestFocusInWindow();
+       
+        }
+else{
+        for (int i=0 ; i<v.length ; i++){
     txtResultado.append(v[i]+"\n");
-    
+        }
 }
         
     }//GEN-LAST:event_cmdMostrarActionPerformed
@@ -208,20 +241,93 @@ for (int i=0 ; i<v.length ; i++){
     txtResultado.setText(" ");
     v=null;
     txtLongitud.requestFocusInWindow();
+    
         // TODO add your handling code here:
     }//GEN-LAST:event_cmdBorrarActionPerformed
 
     private void cmdLlenadoAutomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenadoAutomaticoActionPerformed
     double n;
+    if(txtLongitud.getText().trim().isEmpty()){
+      JOptionPane.showMessageDialog(this,"Digite la longitud del vector","Error",JOptionPane.ERROR_MESSAGE);
+       txtLongitud.requestFocusInWindow();
+       
+        }
+    else{
         for (int i = 0; i < v.length; i++) {
             
         n=(int)(Math.random()*35 + 1);  
         v[i]=n;
         }
+      JOptionPane.showMessageDialog(this,"Vector llenado con éxito");  
+    }
         
-        JOptionPane.showMessageDialog(this,"Vector llenado con éxito");
         // TODO add your handling code here:
     }//GEN-LAST:event_cmdLlenadoAutomaticoActionPerformed
+
+    private void cmdSumatoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSumatoriaActionPerformed
+ double total=0;
+  if(txtLongitud.getText().trim().isEmpty()){
+      JOptionPane.showMessageDialog(this,"Digite la longitud del vector","Error",JOptionPane.ERROR_MESSAGE);
+       txtLongitud.requestFocusInWindow();
+       
+        }     
+ else{ for (int i = 0; i < v.length; i++) {
+           
+            total=total+v[i];     
+        }
+    txtResultado.append("\nSumatoria: "+total);
+         }    
+    }//GEN-LAST:event_cmdSumatoriaActionPerformed
+
+    private void cmdProductoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdProductoriaActionPerformed
+ double  producto=1;
+ if(txtLongitud.getText().trim().isEmpty()){
+      JOptionPane.showMessageDialog(this,"Digite la longitud del vector","Error",JOptionPane.ERROR_MESSAGE);
+       txtLongitud.requestFocusInWindow();
+       
+        }
+ else{
+        for (int i = 0; i < v.length; i++) {
+           
+           producto= (producto*v[i]);
+        }
+    txtResultado.append("\nProducto: "+producto);
+ }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmdProductoriaActionPerformed
+
+    private void cmdMayorElementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMayorElementoActionPerformed
+    double mayor=0;
+if(txtLongitud.getText().trim().isEmpty()){
+      JOptionPane.showMessageDialog(this,"Digite la longitud del vector","Error",JOptionPane.ERROR_MESSAGE);
+       txtLongitud.requestFocusInWindow();      
+        }
+else{
+    for (int i = 0; i < v.length; i++) {
+            if(v[i]>mayor)
+              mayor=v[i];  
+        }
+       txtResultado.append("\nNúmero Mayor: "+mayor);
+ } 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmdMayorElementoActionPerformed
+
+    private void cmdMenorElementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMenorElementoActionPerformed
+    double menor=9999999;
+    if(txtLongitud.getText().trim().isEmpty()){
+      JOptionPane.showMessageDialog(this,"Digite la longitud del vector","Error",JOptionPane.ERROR_MESSAGE);
+       txtLongitud.requestFocusInWindow();
+       
+        }
+    else{
+        for (int i = 0; i < v.length; i++) {
+            if(v[i]<menor){
+              menor=v[i];  }
+        }
+       txtResultado.append("\nNúmero Menor: "+menor); 
+    }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmdMenorElementoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,9 +369,9 @@ for (int i=0 ; i<v.length ; i++){
     private javax.swing.JButton cmdCrear;
     private javax.swing.JButton cmdLlenadoAutomatico;
     private javax.swing.JButton cmdLlenadoManual;
-    private javax.swing.JButton cmdMayorElemento2;
+    private javax.swing.JButton cmdMayorElemento;
+    private javax.swing.JButton cmdMenorElemento;
     private javax.swing.JButton cmdMenorElemento1;
-    private javax.swing.JButton cmdMenorElemento2;
     private javax.swing.JButton cmdMostrar;
     private javax.swing.JButton cmdProductoria;
     private javax.swing.JButton cmdSumatoria;
