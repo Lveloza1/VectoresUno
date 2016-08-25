@@ -246,16 +246,21 @@ else{
     }//GEN-LAST:event_cmdBorrarActionPerformed
 
     private void cmdLlenadoAutomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenadoAutomaticoActionPerformed
-    double n;
+    double n, f;
     if(txtLongitud.getText().trim().isEmpty()){
       JOptionPane.showMessageDialog(this,"Digite la longitud del vector","Error",JOptionPane.ERROR_MESSAGE);
        txtLongitud.requestFocusInWindow();
        
         }
     else{
+        f= Double.parseDouble (JOptionPane.showInputDialog(this, "Digite el numero hasta donde quiere el llenado automatico "));
+           while (f<v.length){
+            JOptionPane.showMessageDialog(this, "Digite un numero mayor a : "+v.length);
+            f= Double.parseDouble (JOptionPane.showInputDialog(this, "Digite el numero hasta donde quiere el llenado automatico "));
+           }
         for (int i = 0; i < v.length; i++) {
             
-        n=(int)(Math.random()*35 + 1);  
+        n=(int)(Math.random()*f + 1);  
         v[i]=n;
         }
       JOptionPane.showMessageDialog(this,"Vector llenado con éxito");  
@@ -304,12 +309,13 @@ if(txtLongitud.getText().trim().isEmpty()){
         }
 else{
     for (int i = 0; i < v.length; i++) {
-            if(v[i]>mayor)
-              mayor=v[i];  
-        }
-       txtResultado.append("\nNúmero Mayor: "+mayor);
+            if (v[i]>mayor){
+                mayor = v[i];
+            }
+       
  } 
-        // TODO add your handling code here:
+     txtResultado.append("Número mayor: "+mayor);
+}    // TODO add your handling code here:
     }//GEN-LAST:event_cmdMayorElementoActionPerformed
 
     private void cmdMenorElementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMenorElementoActionPerformed
@@ -320,12 +326,13 @@ else{
        
         }
     else{
-        for (int i = 0; i < v.length; i++) {
-            if(v[i]<menor){
-              menor=v[i];  }
-        }
-       txtResultado.append("\nNúmero Menor: "+menor); 
+      for (int i = 0; i < v.length; i++) {
+            if (v[i]<menor){
+                menor = v[i];
+            }
     }
+    txtResultado.append("\nNúmero menor : "+menor);  
+  }
         // TODO add your handling code here:
     }//GEN-LAST:event_cmdMenorElementoActionPerformed
 
