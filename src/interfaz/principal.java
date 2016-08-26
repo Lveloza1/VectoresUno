@@ -190,7 +190,7 @@ public class principal extends javax.swing.JFrame {
       else{
           longitud=Integer.parseInt(txtLongitud.getText().trim());
           v=new double[longitud];
-          JOptionPane.showMessageDialog(this,"El vector ha sido creado exitoxamente");
+          JOptionPane.showMessageDialog(this,"El vector ha sido creado exitosamente");
  
           
       }
@@ -253,10 +253,10 @@ else{
        
         }
     else{
-        f= Double.parseDouble (JOptionPane.showInputDialog(this, "Digite el numero hasta donde quiere el llenado automatico "));
+        f= Double.parseDouble (JOptionPane.showInputDialog(this, "Digite el limite del llenado automatico "));
            while (f<v.length){
-            JOptionPane.showMessageDialog(this, "Digite un numero mayor a : "+v.length);
-            f= Double.parseDouble (JOptionPane.showInputDialog(this, "Digite el numero hasta donde quiere el llenado automatico "));
+            JOptionPane.showMessageDialog(this, "El número no puede ser menor que "+v.length);
+            f= Double.parseDouble (JOptionPane.showInputDialog(this, "Digite el limite del llenado automatico "));
            }
         for (int i = 0; i < v.length; i++) {
             
